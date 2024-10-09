@@ -45,7 +45,7 @@ const cors = require('cors')
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY)
 
 app.use(express.json())
-app.use(cors({origin: "http://localhost:5173"}))
+app.use(cors({origin: "https://stripefrontend.netlify.app"}))
 
 app.post('/checkout', async(req, res) => {
     try {
@@ -64,8 +64,8 @@ app.post('/checkout', async(req, res) => {
                     quantity: item.quantity
                 }
             }),
-            success_url: "http://localhost:5173/success",
-            cancel_url: "http://localhost:5173/cancel"
+            success_url: "https://stripefrontend.netlify.app/success",
+            cancel_url: "https://stripefrontend.netlify.app/cancel"
         })
         res.json({url: session.url})
     } catch (error) {
